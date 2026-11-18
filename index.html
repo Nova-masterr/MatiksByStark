@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertical Blitz — Per-Question Timer & Lives</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="card" id="setup-card">
+      <h2>Game Setup</h2>
+      <div class="field-group">
+        <label for="cfg-time">Seconds per Question</label>
+        <input type="number" id="cfg-time" value="10" min="2" max="120" />
+      </div>
+      <div class="field-group">
+        <label for="cfg-lives">Starting Lives (Max 3)</label>
+        <select id="cfg-lives">
+          <option value="1">1 Life</option>
+          <option value="2">2 Lives</option>
+          <option value="3" selected>3 Lives</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label for="cfg-rows">Rows per Addition (2–8)</label>
+        <input type="number" id="cfg-rows" value="3" min="2" max="8" />
+      </div>
+      <div class="field-group">
+        <label for="cfg-questions">Number of Questions</label>
+        <input type="number" id="cfg-questions" value="10" min="1" max="100" />
+      </div>
+      <button class="full-width" onclick="startGame()">Start Blitz</button>
+    </div>
+
+    <div class="hud" id="hud">
+      <div>Time: <span id="time-display">10</span>s</div>
+      <div>Lives: <span id="lives-display">❤️❤️❤️</span></div>
+      <div>Q: <span id="progress-display">1/10</span></div>
+      <div>Score: <span id="score-display">0</span></div>
+    </div>
+
+    <div class="card" id="game-card">
+      <div class="prompt-label" id="q-label">Question 1</div>
+      <div id="problem-container" style="width: 100%"></div>
+      <div class="divider"></div>
+      <input
+        type="number"
+        id="answer-input"
+        placeholder="?"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="card" id="game-over">
+      <h2 id="end-title">Round Complete!</h2>
+      <div class="stat-line">
+        Solved: <strong id="final-score" style="color: #22c55e">0 / 10</strong>
+      </div>
+      <div class="stat-line">
+        Lives Left:
+        <strong id="final-lives" style="color: #ef4444">0 / 3</strong>
+      </div>
+      <div class="stat-line" style="margin-bottom: 20px">
+        Total Time: <strong id="final-time" style="color: #38bdf8">0s</strong>
+      </div>
+      <button class="full-width" onclick="startGame()">
+        Play Again (Same Settings)
+      </button>
+      <button class="full-width secondary" onclick="showSetup()">
+        Change Settings
+      </button>
+    </div>
+
+    <div class="controls" id="bottom-controls">
+      <button class="secondary" onclick="skipProblem()">Skip (-1 Life)</button>
+      <button class="secondary" onclick="showSetup()">Settings</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
